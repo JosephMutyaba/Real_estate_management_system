@@ -1,0 +1,14 @@
+<odoo>
+    <record id="view_national_id_application_search" model="ir.ui.view">
+        <field name="name">national.id.application.search</field>
+        <field name="model">national.id.application</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="nin"/>
+                <field name="dob"/>
+                <field name="address"/>
+            </search>
+        </field>
+    </record>
+</odoo>

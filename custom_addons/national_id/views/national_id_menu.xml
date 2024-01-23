@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <menuitem id="application_type_root" name="National ID ">
+       <menuitem id="application_type_level1" name="Application">
+           <menuitem id="application_action" action="national_id_application_action"/>
+       </menuitem>
+    </menuitem>
+</odoo>

@@ -1,0 +1,12 @@
+<odoo>
+    <record id="national_id_security_group" model="res.groups">
+        <field name="name">National ID Group</field>
+    </record>
+
+    <record id="national_id_security_rule" model="ir.rule">
+        <field name="name">National ID Rule</field>
+        <field name="model_id" ref="model_national_id_application"/>
+        <field name="domain_force">[('stage', '!=', 'application')]</field>
+        <field name="groups" eval="[(4, ref('national_id.national_id_security_group'))]"/>
+    </record>
+</odoo>

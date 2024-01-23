@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <menuitem id="estate_property_tag_menu_root" name="Real Estate Tags">
+        <menuitem id="estate_property_tag_level" name="Tag">
+                <menuitem id="estate_tag_action" action="estate_property_tag_action"/>
+                <menuitem id="estate_type_action" action="estate_property_type_actions"/>
+        </menuitem>
+    </menuitem>
+</odoo>

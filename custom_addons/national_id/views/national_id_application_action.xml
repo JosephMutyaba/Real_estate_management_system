@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <record id="national_id_application_action" model="ir.actions.act_window">
+        <field name="name">National ID Applications</field>
+        <field name="res_model">national.id.application</field>
+        <field name="view_mode">tree,kanban,form</field>
+
+<!--        <field name="view_id" ref="view_national_id_application_kanban"/>-->
+<!--        <field name="search_view_id" ref="national_id.view_national_id_application_search"/>-->
+<!--        <field name="context">{}</field>-->
+    </record>
+</odoo>

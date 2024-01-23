@@ -1,0 +1,18 @@
+<odoo>
+    <record id="view_national_id_application_tree" model="ir.ui.view">
+        <field name="name">national.id.application.tree</field>
+        <field name="model">national.id.application</field>
+        <field name="arch" type="xml">
+            <tree>
+                <!-- Display all fields in the tree view -->
+                <field name="name"/>
+                <field name="nin"/>
+                <field name="dob"/>
+                <field name="address"/>
+                <field name="picture"/>
+                <field name="reference_letter"/>
+                <field name="stage" widget="statusbar" statusbar_visible="draft,open"/>
+            </tree>
+        </field>
+    </record>
+</odoo>
