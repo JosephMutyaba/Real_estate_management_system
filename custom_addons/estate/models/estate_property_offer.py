@@ -71,7 +71,7 @@ class EstatePropertyOfffer(models.Model):
     def action_accept(self):
         for offer in self:
             # Logic for accepting the offer goes here
-            if offer.property_id.status != 'new':
+            if offer.property_id.status != 'offer received':
                 raise UserError("An offer can only be accepted for a property with status 'new'.")
 
             # Ensure only one offer can be accepted for a given property
@@ -83,7 +83,7 @@ class EstatePropertyOfffer(models.Model):
             if existing_accepted_offer:
                 raise UserError("Another offer has already been accepted for this property.")
 
-            seventy_percent = (70/100)*offer.property_id.expected_price
+            seventy_percent = (70 / 100) * offer.property_id.expected_price
             if offer.price < seventy_percent:
                 raise UserError("You cannot accept an offer less than 70% of expected price")
 
@@ -98,3 +98,41 @@ class EstatePropertyOfffer(models.Model):
     #             ('status', '=', 'accepted'),
     #         ], limit=1)
     #         if record.
+
+    @api.model
+    def create(self, vals):
+        """Override the create method to set the property state and check for existing offers."""
+        property_id = vals.get('property_id')
+        amount = vals.get('price')
+
+        # Check if the property has existing offers with higher amounts
+        existing_offers = self.search([('property_id', '=', property_id), ('price', '>', amount)])
+        if existing_offers:
+            raise models.ValidationError("Cannot create offer with lower amount than existing offer(s).")
+
+        # Set the property state to 'Offer Received'
+        property_model = self.env['estate.property']
+        property_record = property_model.browse(property_id)
+        property_record.write({'status': 'offer received'})
+
+        # Continue with the standard create process
+        return super().create(vals)
+
+    @api.model
+    def update(self, vals):
+        """Override the create method to set the property state and check for existing offers."""
+        property_id = vals.get('property_id')
+        amount = vals.get('price')
+
+        # Check if the property has existing offers with higher amounts
+        existing_offers = self.search([('property_id', '=', property_id), ('price', '>', amount)])
+        if existing_offers:
+            raise models.ValidationError("Cannot create offer with lower amount than existing offer(s).")
+
+        # # Set the property state to 'Offer Received'
+        # property_model = self.env['estate.property']
+        # property_record = property_model.browse(property_id)
+        # property_record.write({'status': 'offer received'})
+
+        # Continue with the standard create process
+        return super().create(vals)

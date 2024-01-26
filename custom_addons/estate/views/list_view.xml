@@ -20,6 +20,7 @@
                 <field name="garden_area"/>
                 <field name="garden_orientation"/>
                 <field name="property_type_id"/>
+                <field name="date_availability" optional="hide"/>
             </tree>
         </field>
     </record>

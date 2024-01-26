@@ -106,3 +106,10 @@ class RealEstate(models.Model):
         for record in self:
             if record.date_availability < datetime.now().date():
                 raise ValidationError("The date of availability cannot be in the past.")
+
+    @api.ondelete(at_uninstall=True)
+    def _delete_record(self):
+        for record in self:
+            if record.status not in ('new', 'canceled'):
+                raise UserError("Cannot delete property with state other than 'New' or 'Canceled'")
+
