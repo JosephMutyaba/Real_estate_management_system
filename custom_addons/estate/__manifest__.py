@@ -23,6 +23,7 @@
         'views/estate_property_tag_form.xml',
         'views/estate_property_offer_formview.xml',
         'views/estate_property_offer_treeview.xml',
+        'views/res_user_view_form.xml'
 
     ],
     'installable':True,

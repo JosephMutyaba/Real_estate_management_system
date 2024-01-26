@@ -89,6 +89,7 @@ class EstatePropertyOfffer(models.Model):
 
             # Accept the offer and update the property
             offer.write({'status': 'accepted'})
+            offer.property_id.status = 'offer accepted'
 
     # @api.constrains(property_id.selling_price)
     # def check_selling_price(self):
@@ -135,4 +136,4 @@ class EstatePropertyOfffer(models.Model):
         # property_record.write({'status': 'offer received'})
 
         # Continue with the standard create process
-        return super().create(vals)
+        return super().update(vals)
